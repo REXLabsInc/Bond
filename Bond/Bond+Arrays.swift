@@ -468,7 +468,7 @@ private class DynamicArrayFilterProxy<T>: DynamicArray<T> {
       var removedIndices: [Int] = []
       var pointers = self.pointers
       
-      for idx in Array(indices.reverse()) {
+      for idx in Array(Array(indices.reverse())) {
         
         if let idx = pointers.indexOf(idx) {
           pointers.removeAtIndex(idx)
@@ -483,13 +483,13 @@ private class DynamicArrayFilterProxy<T>: DynamicArray<T> {
       }
       
       if removedIndices.count > 0 {
-        self.dispatchWillRemove(Array(removedIndices.reverse()))
+        self.dispatchWillRemove(Array(Array(removedIndices.reverse())))
       }
       
       self.pointers = pointers
       
       if removedIndices.count > 0 {
-        self.dispatchDidRemove(Array(removedIndices.reverse()))
+        self.dispatchDidRemove(Array(Array(removedIndices.reverse())))
       }
     }
     
